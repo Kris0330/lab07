@@ -1,6 +1,6 @@
 #include "WordCount.h"
 #include <iostream>
-#include <sstream>  // 這一行很重要
+#include <sstream>  
 
 using namespace std;
 
@@ -8,7 +8,7 @@ void testWordCount() {
     WordCount wc;
     wc.addAllWords("apple banana Apple cherry! banana, apple.");
 
-    ostringstream out1, out2;  // 這裡需要 <sstream>，否則編譯錯誤
+    ostringstream out1, out2;  
     wc.dumpWordsSortedByWord(out1);
     wc.dumpWordsSortedByOccurence(out2);
 
