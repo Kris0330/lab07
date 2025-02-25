@@ -8,7 +8,7 @@
 using namespace std;
 
 WordCount::WordCount() {
-  
+ 
 }
 
 std::string WordCount::makeValidWord(std::string word) {
@@ -51,11 +51,12 @@ void WordCount::addAllWords(string text) {
 void WordCount::dumpWordsSortedByWord(ostream &out) const {
     map<string, int> sortedWords;
 
-    for (int i = 0; i < CAPACITY; i++) {
+    for (size_t i = 0; i < CAPACITY; i++) {
         for (const auto &entry : table[i]) {
             sortedWords[entry.first] = entry.second;
         }
     }
+
 
     for (const auto &pair : sortedWords) {
         out << pair.first << "," << pair.second << endl;
@@ -65,15 +66,15 @@ void WordCount::dumpWordsSortedByWord(ostream &out) const {
 void WordCount::dumpWordsSortedByOccurence(ostream &out) const {
     vector<pair<int, string>> wordList;
 
-    for (int i = 0; i < CAPACITY; i++) {
+    for (size_t i = 0; i < CAPACITY; i++) {
         for (const auto &entry : table[i]) {
             wordList.push_back(make_pair(entry.second, entry.first));
         }
     }
 
-    sort(wordList.begin(), wordList.end(), [](const pair<int, string> &a, const pair<int, string> &b) {
+    sort(wordList.begin(), wordList.end(), [](const auto &a, const auto &b) {
         if (a.first != b.first) {
-            return a.first > b.first; 
+            return a.first > b.first;
         }
         return a.second < b.second; 
     });
