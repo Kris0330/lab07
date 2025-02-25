@@ -8,7 +8,7 @@
 using namespace std;
 
 WordCount::WordCount() {
- 
+
 }
 
 std::string WordCount::makeValidWord(std::string word) {
@@ -22,13 +22,13 @@ std::string WordCount::makeValidWord(std::string word) {
 }
 
 int WordCount::incrWordCount(std::string word) {
-    word = makeValidWord(word);  
+    word = makeValidWord(word);
     if (word.empty()) return 0;
 
-    size_t index = hash(word);  
+    size_t index = hash(word);
     for (auto &entry : table[index]) {
         if (entry.first == word) {
-            entry.second++; 
+            entry.second++;
             return entry.second;
         }
     }
@@ -41,7 +41,7 @@ void WordCount::addAllWords(string text) {
     istringstream stream(text);
     string word;
     while (stream >> word) {
-        word = makeValidWord(word);  
+        word = makeValidWord(word);
         if (!word.empty()) {
             incrWordCount(word);
         }
@@ -57,7 +57,6 @@ void WordCount::dumpWordsSortedByWord(ostream &out) const {
         }
     }
 
-
     for (const auto &pair : sortedWords) {
         out << pair.first << "," << pair.second << endl;
     }
@@ -72,11 +71,11 @@ void WordCount::dumpWordsSortedByOccurence(ostream &out) const {
         }
     }
 
-    sort(wordList.begin(), wordList.end(), [](const auto &a, const auto &b) {
+    sort(wordList.begin(), wordList.end(), [](const std::pair<int, std::string> &a, const std::pair<int, std::string> &b) {
         if (a.first != b.first) {
-            return a.first > b.first;
+            return a.first > b.first;  
         }
-        return a.second < b.second; 
+        return a.second < b.second;  
     });
 
     for (const auto &pair : wordList) {
@@ -87,8 +86,7 @@ void WordCount::dumpWordsSortedByOccurence(ostream &out) const {
 size_t WordCount::hash(std::string word) const {
     size_t hashValue = 0;
     for (char c : word) {
-        hashValue = hashValue * 31 + c; 
+        hashValue = hashValue * 31 + c;
     }
     return hashValue % CAPACITY;
 }
-
