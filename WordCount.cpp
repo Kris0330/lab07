@@ -8,7 +8,7 @@
 using namespace std;
 
 WordCount::WordCount() {
-
+   
 }
 
 std::string WordCount::makeValidWord(std::string word) {
@@ -71,9 +71,9 @@ void WordCount::dumpWordsSortedByOccurence(ostream &out) const {
         }
     }
 
-    sort(wordList.begin(), wordList.end(), [](const std::pair<int, std::string> &a, const std::pair<int, std::string> &b) {
+    sort(wordList.begin(), wordList.end(), [](const pair<int, string> &a, const pair<int, string> &b) {
         if (a.first != b.first) {
-            return a.first > b.first;  
+            return a.first > b.first; 
         }
         return a.second < b.second;  
     });
@@ -90,3 +90,4 @@ size_t WordCount::hash(std::string word) const {
     }
     return hashValue % CAPACITY;
 }
+
