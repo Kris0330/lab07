@@ -1,6 +1,7 @@
 #include "WordCount.h"
+#include "tddFuncs.h" 
 #include <iostream>
-#include <sstream>  
+#include <sstream>
 
 using namespace std;
 
@@ -8,15 +9,20 @@ void testWordCount() {
     WordCount wc;
     wc.addAllWords("apple banana Apple cherry! banana, apple.");
 
-    ostringstream out1, out2;  
+    ostringstream out1, out2;
     wc.dumpWordsSortedByWord(out1);
     wc.dumpWordsSortedByOccurence(out2);
 
-    cout << "Sorted by word:\n" << out1.str();
-    cout << "Sorted by occurrence:\n" << out2.str();
+    string expectedSortedByWord = "apple,3\nbanana,2\ncherry,1\n";
+    string expectedSortedByOccurence = "apple,3\nbanana,2\ncherry,1\n";
+
+    ASSERT_EQUALS(expectedSortedByWord, out1.str());
+    ASSERT_EQUALS(expectedSortedByOccurence, out2.str());
 }
 
 int main() {
     testWordCount();
+    cout << "All tests passed!" << endl;
     return 0;
 }
+
